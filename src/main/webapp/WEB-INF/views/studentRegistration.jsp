@@ -33,36 +33,24 @@
                     <div class="row g-3 m-4">
 
                         <div class="col-md-4 control-label">
-                            <label for="housingProject" class="form-label control-label">College Name</label>
-                            <select class="form-control form-control" name="propertyId" id="propertyId" onchange="getPropertyPrice(this.value)" value="${propertyRegistration.property.housingProject}">
+                            <label for="collegeId" class="form-label control-label">Select College Name</label>
+                            <select class="form-control form-control" name="collegeId" id="collegeId" onchange="getDepartment(this.value)">
                                 <option value="Select" hidden>Select</option>
-                                <c:forEach items="${propertyList}" var="property" varStatus="coount">
-                                    <option value="${property.propertyId}">${property.housingProject}</option>
+                                <c:forEach items="${collegeList}" var="college">
+                                    <option  value="${college.collegeId}">${college.collegeName}</option>
                                 </c:forEach>
                             </select>
                         </div>
-                        <input type="hidden" name="housingProject" id="housingProject">
-                        <input type="hidden" name="propertyName" id="propertyName">
 
-                        <c:choose>
-                            <c:when test = "${propertyRegistration ne null}">
-                                <input type="hidden" name="registrationId" id="propertyRegistrationId" value="${propertyRegistration.propertyRegistrationId}">
-                            </c:when>
-                            <c:otherwise>
-                                <input type="hidden" name="registrationId" id="propertyRegistrationId" value="0">
-                            </c:otherwise>
-                        </c:choose>
-                        <%--                        <input type="hidden" name="registrationId" id="propertyRegistrationId" value="${propertyRegistration.propertyRegistrationId}">--%>
 
                         <div class="col-md-4 control-label">
-                            <label for="propertyType" class="form-label control-label">Property Type</label>
-                            <select class="form-control form-control" name="propertyType" id="propertyType" value="${propertyRegistration.propertyType}">
+                            <label for="departmentId" class="form-label control-label">Select Department Name</label>
+                            <select class="form-control" name="departmentId" id="departmentId">
                                 <option value="Select" hidden>Select</option>
-                                <c:forEach items="${propertyList}" var="property" varStatus="coount">
-                                    <option value="${property.propertyType}">${property.propertyType}</option>
-                                </c:forEach>
                             </select>
                         </div>
+
+
                         <div class="col-md-4 control-label">
                             <label for="propertyPrice" class="form-label control-label">Property Cost</label>
                             <input class="form-control form-control" name="propertyPrice" id="propertyPrice" value="${propertyRegistration.property.propertyPrice}"/>
@@ -201,20 +189,21 @@
         $('#viewId').addClass("active");
     }
 
-    function getPropertyPrice(propertyId){
-        console.log("Property Id : " + propertyId);
+    function getDepartment(collegeId){
+        console.log(collegeId);
         $.ajax({
-            url: '/getPropertyPrice',
+            url: '/getDepartment',
             type: 'GET',
             data: {
-                propertyId: propertyId
+                collegeId: collegeId
             },
-            success: function (data) {
-                console.log(data);
-                const property = JSON.parse(data);
-                $('#propertyPrice').val(property.propertyPrice);
-                $('#housingProject').val(property.housingProject);
-                $('#propertyName').val(property.propertyName);
+            success: function (result) {
+                console.log(result);
+                var s = '';
+                for(var i = 0; i < result.length; i++) {
+                    var id = s += '<option value="' + result[i].departmentId + '">' + result[i].departmentName + '</option>';
+                }
+                $('#departmentId').html(s);
             }
         });
     }
