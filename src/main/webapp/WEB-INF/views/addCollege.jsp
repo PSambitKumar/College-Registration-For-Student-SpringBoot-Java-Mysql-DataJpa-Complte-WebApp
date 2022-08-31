@@ -129,6 +129,11 @@
                                 </select>
                             </div>
 
+                            <div class="col-md-4 control-label">
+                                <label for="departmentId" class="form-label control-label">Course Fee</label>
+                                <input type="number" name="courseFee" id="courseFee" class="form-control">
+                            </div>
+
                             <div class="btnhold mt-3">
                                 <button type="submit" class="btn btn-outline-primary mr-3" >Submit</button>
                                 <button type="reset" class="btn btn-outline-secondary">Reset</button>

@@ -60,6 +60,7 @@ public class CollegeController {
 	@PostMapping(value = "/addCollegeDepartment")
 	public String addCollegeDepartment(@RequestParam(value = "collegeId", required = false)int collegeId,
 									   @RequestParam(value = "departmentId", required = false)int departmentId,
+									   @RequestParam(value = "courseFee", required = false)Double courseFee,
 									   Model model, CollegeDepartment collegeDepartment){
 		System.out.println("Inside Save College Department Method------------->>");
 		System.out.println("College Id : " + collegeId);
@@ -68,6 +69,7 @@ public class CollegeController {
 		List<CollegeDepartment> departmentList1 = college.getDepartmentList();
 
 		 collegeDepartment.setDepartment(departmentService.getDepartmentByDepartmentId(departmentId));
+		 collegeDepartment.setCourseFee(courseFee);
 		 collegeDepartment =collegeDepartmentService.saveCollegeDepartment(collegeDepartment);
 
 		departmentList1.add(collegeDepartment);

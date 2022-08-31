@@ -12,6 +12,7 @@ public class CollegeDepartment {
 	@ManyToOne
 	@JoinColumn(name = "departmentId")
 	private Department department;
+	private Double courseFee;
 
 	public int getCollegeDepartmentId() {
 		return collegeDepartmentId;
@@ -34,6 +35,16 @@ public class CollegeDepartment {
 		return "CollegeDepartment{" +
 			   "collegeDepartmentId=" + collegeDepartmentId +
 			   ", department=" + department +
+			   ", courseFee=" + courseFee +
 			   '}';
 	}
+
+	public Double getCourseFee() {
+		return courseFee;
+	}
+
+	public void setCourseFee(Double courseFee) {
+		this.courseFee = courseFee;
+	}
+
 }

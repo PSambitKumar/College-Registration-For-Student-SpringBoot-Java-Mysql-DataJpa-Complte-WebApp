@@ -27,7 +27,7 @@
 
     <div class="card-body">
         <div id="add">
-            <form action="" method="post" id="collegeRegistrationFrom" enctype="multipart/form-data">
+            <form action="/studentRegistration" method="post" id="collegeRegistrationFrom" enctype="multipart/form-data">
                 <h3 class="card-title">College Details</h3>
                 <div class="form">
                     <div class="row g-3 m-4">
@@ -45,15 +45,15 @@
 
                         <div class="col-md-4 control-label">
                             <label for="departmentId" class="form-label control-label">Select Department Name</label>
-                            <select class="form-control" name="departmentId" id="departmentId">
+                            <select class="form-control" name="departmentId" id="departmentId" onchange="getCourseFee(this.value)">
                                 <option value="Select" hidden>Select</option>
                             </select>
                         </div>
 
 
                         <div class="col-md-4 control-label">
-                            <label for="propertyPrice" class="form-label control-label">Property Cost</label>
-                            <input class="form-control form-control" name="propertyPrice" id="propertyPrice" value="${propertyRegistration.property.propertyPrice}"/>
+                            <label for="courseFee" class="form-label control-label">Course Fee</label>
+                            <input class="form-control form-control" name="courseFee" id="courseFee"/>
                         </div>
                     </div>
 
@@ -63,18 +63,18 @@
                             <div class="hold">
                                 <div class="row g-3 mb-4">
                                     <div class="col-md-4 control-label">
-                                        <label for="name" class="form-label control-label">Name</label>
-                                        <input type="text" name="applicantName" class="form-control" id="name" required value="${propertyRegistration.applicantName}"/>
+                                        <label for="studentName" class="form-label control-label">Name</label>
+                                        <input type="text" name="studentName" class="form-control" id="studentName" required />
 
                                     </div>
                                     <div class="col-md-4 control-label">
-                                        <label for="email" class="form-label"><span class="">Email</span> </label>
-                                        <input type="email" name="applicantEmail" class="form-control" id="email" required value="${propertyRegistration.applicantEmail}"/>
+                                        <label for="studentEmail" class="form-label"><span class="">Email</span> </label>
+                                        <input type="email" name="studentEmail" class="form-control" id="studentEmail" required />
                                     </div>
 
                                     <div class="col-md-4 control-label">
-                                        <label for="mobile" class="form-label control-label">Mobile</label>
-                                        <input type="text" name="applicantPhone" class="form-control" id="mobile" required value="${propertyRegistration.applicantPhone}"/>
+                                        <label for="studentMobile" class="form-label control-label">Mobile</label>
+                                        <input type="text" name="studentMobile" class="form-control" id="studentMobile" required/>
                                     </div>
 
                                 </div>
@@ -82,8 +82,8 @@
                                 <div class="row g-3">
 
                                     <div class="col-md-4 control-label">
-                                        <label for="dob" class="form-label control-label">Date of Birth</label>
-                                        <input type="date" name="applicantDOB" class="form-control datepicker minimumSize" id="dob" required value="${propertyRegistration.applicantDOB}"/>
+                                        <label for="studentDob" class="form-label control-label">Date of Birth</label>
+                                        <input type="date" name="studentDob" class="form-control datepicker minimumSize" id="studentDob" required />
                                     </div>
 
                                     <div class="col-md-4 control-label">
@@ -91,13 +91,13 @@
                                         <div class="row g-2" style="margin-left: 10rem;">
                                             <div class="col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="applicantGender" id="exampleRadios1" value="Male" checked>
+                                                    <input class="form-check-input" type="radio" name="studentGender" id="exampleRadios1" value="Male" checked>
                                                     <label class="form-check-label" for="exampleRadios1"> Male </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="applicantGender" id="exampleRadios2" value="FeMale">
+                                                    <input class="form-check-input" type="radio" name="studentGender" id="exampleRadios2" value="FeMale">
                                                     <label class="form-check-label" for="exampleRadios2">FeMale </label>
                                                 </div>
                                             </div>
@@ -106,14 +106,14 @@
 
                                     <div class="col-md-4 control-label" style="margin-top: 2rem;">
                                         <div class="form-group">
-                                            <label for="idProof">Upload id-proof</label>
-                                            <input type="file" class="form-control-file" name="idProof" id="idProof">
+                                            <label for="documentProof">Upload id-proof</label>
+                                            <input type="file" class="form-control-file" name="documentProof" id="documentProof">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="btnhold mt-3">
-                                    <button type="button" class="btn btn-outline-primary mr-3" onclick="validateForm()">Submit</button>
+                                    <button type="submit" class="btn btn-outline-primary mr-3" <%--onclick="validateForm()"--%>>Submit</button>
                                     <button type="reset" class="btn btn-outline-secondary">Reset</button>
                                 </div>
 
@@ -132,31 +132,33 @@
                 <thead>
                 <tr>
                     <th>S.No</th>
-                    <th>Housing Project</th>
-                    <th>Property Type</th>
-                    <th>Property Cost</th>
-                    <th>Applicant Name</th>
-                    <th>Applicant Email</th>
-                    <th>Applicant Mobile</th>
-                    <th>Applicant DOB</th>
+                    <th>Student Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>College Name</th>
+                    <th>Department Name</th>
+                    <th>Course Fee</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${propertyRegistrationList}" var="propertyRegistration" varStatus="count">
+                <c:forEach items="${studentList}" var="student" varStatus="count">
                     <tr>
                         <td>${count.count}</td>
-                        <td>${propertyRegistration.property.housingProject}</td>
-                        <td>${propertyRegistration.propertyType}</td>
-                        <td>${propertyRegistration.property.propertyPrice}</td>
-                        <td>${propertyRegistration.applicantName}</td>
-                        <td>${propertyRegistration.applicantEmail}</td>
-                        <td>${propertyRegistration.applicantPhone}</td>
-                        <td>${propertyRegistration.applicantDOB}</td>
+                        <td>${student.studentName}</td>
+                        <td>${student.studentEmail}</td>
+                        <td>${student.studentMobile}</td>
+                        <td>${student.studentDob}</td>
+                        <td>${student.studentGender}</td>
+                        <td>${student.college.collegeName}</td>
+                        <td>${student.collegeDepartment.department.departmentName}</td>
+                        <td>${student.collegeDepartment.courseFee}</td>
                         <td>
-                            <a href = "/edit/${propertyRegistration.propertyRegistrationId}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg></a>
+                            <a href = "/edit/${student.studentId}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg></a>
                             |
-                            <a href = "/delete/${propertyRegistration.propertyRegistrationId}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></a>
+                            <a href = "/delete/${student.studentId}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -206,6 +208,10 @@
                 $('#departmentId').html(s);
             }
         });
+    }
+
+    function getCourseFee(departmentId){
+        console.log(departmentId);
     }
 
     function validateForm(){

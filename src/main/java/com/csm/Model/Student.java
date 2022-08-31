@@ -1,7 +1,7 @@
 package com.csm.Model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "tbl_student")
@@ -16,9 +16,10 @@ public class Student {
 	private String studentMobile;
 	private String studentEmail;
 	private String studentGender;
+	private String documentPath;
 	@ManyToOne
 	@JoinColumn(name = "departmentId")
-	private Department department;
+	private CollegeDepartment collegeDepartment;
 	@ManyToOne
 	@JoinColumn(name = "collegeId")
 	private College college;
@@ -80,12 +81,20 @@ public class Student {
 		this.studentGender = studentGender;
 	}
 
-	public Department getDepartment() {
-		return department;
+	public String getDocumentPath() {
+		return documentPath;
 	}
 
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setDocumentPath(String documentPath) {
+		this.documentPath = documentPath;
+	}
+
+	public CollegeDepartment getCollegeDepartment() {
+		return collegeDepartment;
+	}
+
+	public void setCollegeDepartment(CollegeDepartment collegeDepartment) {
+		this.collegeDepartment = collegeDepartment;
 	}
 
 	public College getCollege() {
@@ -106,7 +115,8 @@ public class Student {
 			   ", studentMobile='" + studentMobile + '\'' +
 			   ", studentEmail='" + studentEmail + '\'' +
 			   ", studentGender='" + studentGender + '\'' +
-			   ", department=" + department +
+			   ", documentPath='" + documentPath + '\'' +
+			   ", collegeDepartment=" + collegeDepartment +
 			   ", college=" + college +
 			   '}';
 	}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.SecondaryTable;
+import java.util.List;
 
 @Service
 public class CollegeDepartmentServiceImpl implements CollegeDepartmentService {
@@ -16,5 +17,10 @@ public class CollegeDepartmentServiceImpl implements CollegeDepartmentService {
 	@Override
 	public CollegeDepartment saveCollegeDepartment(CollegeDepartment collegeDepartment) {
 		return collegeDepartmentRepository.save(collegeDepartment);
+	}
+
+	@Override
+	public List<CollegeDepartment> getAllCollegeDepartment() {
+		return collegeDepartmentRepository.findAll();
 	}
 }

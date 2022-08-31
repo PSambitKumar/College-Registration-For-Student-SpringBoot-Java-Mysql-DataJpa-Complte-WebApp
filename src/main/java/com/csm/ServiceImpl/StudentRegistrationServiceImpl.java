@@ -4,9 +4,11 @@ import com.csm.Model.Student;
 import com.csm.Repository.StudentRepository;
 import com.csm.Service.StudentRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class StudentRegistrationServiceImpl implements StudentRegistrationService {
 
 	@Autowired
@@ -24,7 +26,7 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 
 	@Override
 	public Student saveStudent(Student student) {
-		return null;
+		return studentRepository.save(student);
 	}
 
 	@Override
