@@ -101,7 +101,12 @@
       <form action="/addDepartment" method="post" id="addDepartmentForm">
         <h3 class="card-title">Department Details</h3>
         <div class="form">
+
           <div class="row g-3 m-4">
+
+            <div class="col-md-2 control-label">
+            </div>
+
             <div class="col-md-4 control-label">
               <label for="departmentName" class="form-label control-label">Department Name</label>
               <input type="text" name="departmentName" class="form-control" id="departmentName" placeholder="Enter Department Name">
@@ -155,6 +160,8 @@
       </table>
     </div>
   </div>
+
+  <a href="/"><button class="btn btn-primary">Home</button></a>
 </div>
 
 </body>

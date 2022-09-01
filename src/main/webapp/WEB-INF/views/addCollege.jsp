@@ -79,6 +79,10 @@
                 <h3 class="card-title">College Name</h3>
                 <div class="form">
                     <div class="row g-3 m-4">
+
+                        <div class="col-md-2 control-label">
+                        </div>
+
                         <div class="col-md-4 control-label">
                             <label for="collegeName" class="form-label control-label">College Name</label>
                             <input type="text" name="collegeName" class="form-control" id="collegeName" placeholder="Enter College Name">
@@ -109,6 +113,7 @@
                     <h3 class="card-title">College Name</h3>
                     <div class="form">
                         <div class="row g-3 m-4">
+
                             <div class="col-md-4 control-label">
                                 <label for="collegeId" class="form-label control-label">Select College</label>
                                 <select name="collegeId" id="collegeId" class="form-control">
@@ -163,7 +168,23 @@
                     <tr>
                         <td>${count.count}</td>
                         <td>${college.collegeName}</td>
-                        <td>${college.departmentList}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test = "${college.departmentList.size() > 0}">
+                                    <c:forEach items="${college.departmentList}" var="department" varStatus="count">
+                                        <span>${count.count}</span> . ${department.department.departmentName}
+                                        <c:if test="${department.courseFee ne null}">(${department.courseFee})</c:if>
+                                        <c:if test="${department.courseFee eq null}">(Not Provided)</c:if>
+                                        , <br>
+<%--                                        <span>${department.department.departmentName}, </span>--%>
+                                    </c:forEach>
+                                </c:when>
+
+                                <c:when test = "${college.departmentList.size() == 0}">
+                                    <span>No Department Found!</span>
+                                </c:when>
+                            </c:choose>
+                        </td>
                         <td>${college.status}</td>
                         <td>
                             <a href = "/edit/${college.collegeId}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg></a>
@@ -176,6 +197,7 @@
             </table>
         </div>
     </div>
+        <a href="/"><button class="btn btn-primary">Home</button></a>
 </div>
 
 </body>

@@ -53,7 +53,7 @@
 
                         <div class="col-md-4 control-label">
                             <label for="courseFee" class="form-label control-label">Course Fee</label>
-                            <input class="form-control form-control" name="courseFee" id="courseFee"/>
+                            <input class="form-control form-control" name="courseFee" id="courseFee" disabled/>
                         </div>
                     </div>
 
@@ -201,7 +201,8 @@
             },
             success: function (result) {
                 console.log(result);
-                var s = '';
+                // var s = '';
+                var s = '<option value="Select" hidden>Select</option>';
                 for(var i = 0; i < result.length; i++) {
                     var id = s += '<option value="' + result[i].departmentId + '">' + result[i].departmentName + '</option>';
                 }
@@ -212,6 +213,23 @@
 
     function getCourseFee(departmentId){
         console.log(departmentId);
+        let collegeId = $('#collegeId').val();
+        $.ajax({
+            url: '/getCourseFee',
+            type: 'GET',
+            data: {
+                departmentId: departmentId,
+                collegeId: collegeId
+            },
+            success: function (result) {
+                console.log(result);
+                if(result == "0.0"){
+                    $('#courseFee').val("Not Provided!");
+                }else
+                    $('#courseFee').val(result);
+
+            }
+        });
     }
 
     function validateForm(){

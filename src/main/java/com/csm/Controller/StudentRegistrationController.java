@@ -88,4 +88,25 @@ public class StudentRegistrationController {
 		return "studentRegistration";
 	}
 
+	@ResponseBody
+	@GetMapping(value = "/getCourseFee")
+	public String getCourseFee(@RequestParam(value = "departmentId", required = false)Integer departmentId,
+	                           @RequestParam(value = "collegeId", required = false)Integer collegeId){
+		System.out.println("Inside Get Course Fee Method------------->>");
+		System.out.println("Department Id : " + departmentId);
+		System.out.println("College Id : " + collegeId);
+		Double courseFee = null;
+		College college = collegeService.getCollegeByCollegeId(collegeId);
+		for (CollegeDepartment collegeDepartment : college.getDepartmentList()) {
+			if (collegeDepartment.getDepartment().getDepartmentId() == departmentId) {
+				if (collegeDepartment.getCourseFee() != null)
+					courseFee = collegeDepartment.getCourseFee();
+				else
+					courseFee = 0.0;
+			}
+		}
+		System.out.println("Course Fee : " + courseFee);
+		return courseFee.toString();
+	}
+
 }

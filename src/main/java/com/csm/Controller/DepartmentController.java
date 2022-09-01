@@ -40,6 +40,7 @@ public class DepartmentController {
 				model.addAttribute("status", 0);
 			}
 		}
+		model.addAttribute("departmentList", departmentService.getAllDepartment());
 		return "addDepartment";
 	}
 }
