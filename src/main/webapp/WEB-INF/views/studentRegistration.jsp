@@ -175,22 +175,18 @@
         $('#add').show();
         $('#view').hide();
     });
-
     function openAdd(){
         $('#view').hide();
         $('#add').show();
-
         $('#addId').addClass("active");
         $('#viewId').removeClass("active");
     }
     function openView(){
         $('#view').show();
         $('#add').hide();
-
         $('#addId').removeClass("active");
         $('#viewId').addClass("active");
     }
-
     function getDepartment(collegeId){
         console.log(collegeId);
         $.ajax({
@@ -210,7 +206,6 @@
             }
         });
     }
-
     function getCourseFee(departmentId){
         console.log(departmentId);
         let collegeId = $('#collegeId').val();
@@ -227,24 +222,18 @@
                     $('#courseFee').val("Not Provided!");
                 }else
                     $('#courseFee').val(result);
-
             }
         });
     }
-
     function validateForm(){
-
         let name = $('#name').val();
         let email = $('#email').val();
         let phone = $('#mobile').val();
         let dob = $('#dob').val();
-
         let nameRegx = /^[a-zA-Z ]+$/;
         let emailRegx = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
         let phoneRegx = /^[0-9]{10}$/;
-
         let today = new Date();
-
         if (name == null || name == "") {
             alert("Name must be filled out");
             $('#name').focus();
@@ -265,7 +254,6 @@
         } else {
             $('#name').css('border-color', 'green');
             $('#name').attr('placeholder', '');
-
             if (email == null || email == "") {
                 alert("Email must be filled out");
                 $('#email').focus();
@@ -281,7 +269,6 @@
             } else {
                 $('#email').css('border-color', 'green');
                 $('#email').attr('placeholder', '');
-
                 if (phone == null || phone == "") {
                     alert("Phone must be filled out");
                     $('#mobile').focus();
@@ -297,7 +284,6 @@
                 } else {
                     $('#mobile').css('border-color', 'green');
                     $('#mobile').attr('placeholder', '');
-
                     if (dob == null || dob == "") {
                         alert("Date of birth must be filled out");
                         $('#dob').focus();
@@ -314,7 +300,6 @@
                         console.log("Inside DOB Pass.");
                         $('#dob').css('border-color', 'green');
                         $('#dob').attr('placeholder', '');
-
                         let confirm = window.confirm("Are you sure!! You want to submit?");
                         if (confirm == true) {
                             console.log("Inside Confirm Pass.");
@@ -328,9 +313,5 @@
             }
         }
     }
-
-
-
 </script>
 </html>
-
