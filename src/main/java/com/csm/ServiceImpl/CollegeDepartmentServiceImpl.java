@@ -23,4 +23,9 @@ public class CollegeDepartmentServiceImpl implements CollegeDepartmentService {
 	public List<CollegeDepartment> getAllCollegeDepartment() {
 		return collegeDepartmentRepository.findAll();
 	}
+
+	@Override
+	public void deleteCollegeDepartmentByCollegeDepartmentId(Integer collegeDepartmentId) {
+		collegeDepartmentRepository.deleteById(collegeDepartmentId);
+	}
 }

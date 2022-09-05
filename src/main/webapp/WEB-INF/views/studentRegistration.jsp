@@ -27,7 +27,7 @@
 
     <div class="card-body">
         <div id="add">
-            <form action="/studentRegistration" method="post" id="collegeRegistrationFrom" enctype="multipart/form-data">
+            <form action="${pageContext.request.contextPath}/studentRegistration" method="post" id="collegeRegistrationFrom" enctype="multipart/form-data">
                 <h3 class="card-title">College Details</h3>
                 <div class="form">
                     <div class="row g-3 m-4">
@@ -166,6 +166,8 @@
             </table>
         </div>
     </div>
+
+    <a href="/"><button class="btn btn-primary">Home</button></a>
 </div>
 
 </body>

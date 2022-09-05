@@ -31,6 +31,7 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 
 	@Override
 	public void deleteStudentByStudentId(Integer studentId) {
+		studentRepository.deleteById(studentId);
 	}
 
 	@Override

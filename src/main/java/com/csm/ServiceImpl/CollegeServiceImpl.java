@@ -29,6 +29,7 @@ public class CollegeServiceImpl implements CollegeService {
 	}
 	@Override
 	public void deleteCollegeByCollegeId(Integer collegeId) {
+		collegeRepository.deleteById(collegeId);
 	}
 	@Override
 	public College getCollegeByCollegeName(String collegeName) {

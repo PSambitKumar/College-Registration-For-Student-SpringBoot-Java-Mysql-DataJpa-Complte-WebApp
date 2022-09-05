@@ -7,4 +7,5 @@ import java.util.List;
 public interface CollegeDepartmentService {
 	CollegeDepartment saveCollegeDepartment(CollegeDepartment collegeDepartment);
 	List<CollegeDepartment> getAllCollegeDepartment();
+	void deleteCollegeDepartmentByCollegeDepartmentId(Integer collegeDepartmentId);
 }

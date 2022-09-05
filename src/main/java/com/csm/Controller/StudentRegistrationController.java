@@ -12,10 +12,7 @@ import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.Multipart;
@@ -107,6 +104,14 @@ public class StudentRegistrationController {
 		}
 		System.out.println("Course Fee : " + courseFee);
 		return courseFee.toString();
+	}
+
+	@GetMapping(value = "/delete/{id}")
+	public String deleteStudent(@PathVariable(value = "id")int id){
+		System.out.println("Inside Delete Student Method------------->>");
+		System.out.println("Student Id : " + id);
+		studentRegistrationService.deleteStudentByStudentId(id);
+		return "redirect:/studentRegistration";
 	}
 
 }
