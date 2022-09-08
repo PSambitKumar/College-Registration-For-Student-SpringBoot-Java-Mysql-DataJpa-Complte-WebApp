@@ -8,14 +8,12 @@ import com.csm.Service.CollegeDepartmentService;
 import com.csm.Service.CollegeService;
 import com.csm.Service.DepartmentService;
 import com.csm.Service.StudentRegistrationService;
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.mail.Multipart;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,7 +104,7 @@ public class StudentRegistrationController {
 		return courseFee.toString();
 	}
 
-	@GetMapping(value = "/delete/{id}")
+	@GetMapping(value = "/deleteStudent/{id}")
 	public String deleteStudent(@PathVariable(value = "id")int id){
 		System.out.println("Inside Delete Student Method------------->>");
 		System.out.println("Student Id : " + id);

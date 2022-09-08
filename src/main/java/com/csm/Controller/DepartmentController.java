@@ -37,7 +37,7 @@ public class DepartmentController {
 				model.addAttribute("status", 1);
 			} else{
 				System.out.println("Department Save Failed------------->>");
-				model.addAttribute("status", 0);
+					model.addAttribute("status", 0);
 			}
 		}
 		model.addAttribute("departmentList", departmentService.getAllDepartment());
