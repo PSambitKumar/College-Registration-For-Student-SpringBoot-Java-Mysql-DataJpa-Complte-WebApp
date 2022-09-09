@@ -5,7 +5,7 @@
   Time: 10:51 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -16,10 +16,14 @@
     <title>Home</title>
 </head>
 <body style="margin: 5rem;">
-<div class="col-md-4 control-label">
-  <a href="/addDepartment"><button class="btn btn-primary">Add Department</button></a>
-  <a href="/addCollege"><button class="btn btn-primary">Add College</button></a>
-  <a href="/studentRegistration"><button class="btn btn-primary">Student Registration</button></a>
+<div class="col-md-12 control-label">
+  <div class="text-center">
+    <h3 style="font-family: 'Segoe UI Semibold',serif">Home</h3>
+    <a href="${pageContext.request.contextPath}/addDepartment"><button class="btn btn-primary">Add Department</button></a>
+    <a href="${pageContext.request.contextPath}/addCollege"><button class="btn btn-primary">Add College</button></a>
+    <a href="${pageContext.request.contextPath}/studentRegistration"><button class="btn btn-primary">Student Registration</button></a>
+    <a href="${pageContext.request.contextPath}/addLecturer"><button class="btn btn-primary">Lecturer Registration</button></a>
+  </div>
 </div>
 </body>
 </html>
