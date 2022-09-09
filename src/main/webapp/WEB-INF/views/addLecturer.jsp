@@ -35,7 +35,7 @@
 
     <div class="card-body">
         <div id="add">
-            <form action="/addLecturer" method="post" id="addLecturerForm" autocomplete="off" onsubmit="return validateForm()">
+            <form action="/addLecturer" method="post" id="addLecturerForm" autocomplete="off" onsubmit="return validateForm()" enctype="multipart/form-data">
                 <h3 class="card-title">Lecturer Details</h3>
                 <div class="form">
 
@@ -86,7 +86,7 @@
 
                         <div class="col-md-3 control-label">
                             <label for="lecturerAddress" class="form-label control-label">Address</label>
-                            <textarea name="lecturerAddress" class="form-control" id="lecturerAddress" placeholder="Enter Address" rows="7"></textarea>
+                            <textarea name="lecturerAddress" class="form-control" id="lecturerAddress" placeholder="Enter Address" rows="6"></textarea>
                         </div>
 
                         <div class="col-md-2" style="position: absolute; left: 79rem; top: 25rem;">
@@ -154,26 +154,40 @@
 
 
         <div id="view">
-            <h3 class="card-title">Department Details</h3>
+            <h3 class="card-title">Lecturer Details</h3>
             <table class="table table-bordered">
                 <thead>
                 <tr>
                     <th>Sl.No</th>
-                    <th>Department Name</th>
-                    <th>Staus</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Date Of Birth</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                    <th>College</th>
+                    <th>Department</th>
+                    <th>Experience</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${departmentList}" var="department" varStatus="count">
+                <c:forEach items="${lecturerList}" var="lecturer" varStatus="count">
                     <tr>
                         <td>${count.count}</td>
-                        <td>${department.departmentName}</td>
-                        <td>${department.status}</td>
+                        <td>${lecturer.lecturerName}</td>
+                        <td>${lecturer.lecturerEmail}</td>
+                        <td>${lecturer.lecturerDob}</td>
+                        <td>${lecturer.lecturerGender}</td>
+                        <td>${lecturer.lecturerPhone}</td>
+                        <td>${lecturer.lecturerAddress}</td>
+                        <td>${lecturer.college.collegeName}</td>
+                        <td>${lecturer.workingDepartment.departmentName}</td>
+                        <td>${lecturer.lecturerExperience}</td>
                         <td>
-                            <a href = "/edit/${department.departmentId}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg></a>
+                            <a href = "/edit/${lecturer.lecturerId}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg></a>
                             |
-                            <a href = "/delete/${department.departmentId}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></a>
+                            <a href = "/delete/${lecturer.lecturerId}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></a>
                         </td>
                     </tr>
                 </c:forEach>
